@@ -338,6 +338,7 @@ function inicializar(){
 }
 
 //Comprueba que el formulario ha sido rellenado.
+
 function comprobar(){
     var f=formElement;
     var checked=false;
@@ -379,7 +380,7 @@ function comprobar(){
 
     //Comprobación tipo multiple.
 
-    /*
+    
     console.log(document.getElementById("multiple1").selectedIndex);
     if (document.getElementById("multiple1").selectedIndex == -1) {
         alert("¡Responde la 2 pregunta!");
@@ -430,7 +431,7 @@ function comprobar(){
     }
 
     return true;
-    */
+    
 }
 
 
