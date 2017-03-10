@@ -59,9 +59,7 @@ window.onload = function(){
             gestionarXml(this);
         }
     };
-    xhttp.open("GET", "https://rawgit.com/JosepMesquida/CorreccionExamen/master/preguntas.XML", true); //desarrollo.
-    //xhttp.open("GET", "https://cdn.rawgit.com/am4rtinez/LMSGI-03/b1a14887/xml/questions.xml", true); //produccion.
-    //xhttp.open("GET", "xml/questions.xml", true); 
+    xhttp.open("GET", "https://rawgit.com/JosepMesquida/CorreccionExamen/master/preguntas.XML", true);
     xhttp.send();
     
 }
@@ -87,7 +85,7 @@ function gestionarXml(dataXml){
     respuesta8 = pregunta8;
     console.debug("Respuesta obtenida para la pregunta8: " + pregunta8);
 
-        //Pregunta10 - redio 
+    //Pregunta10 - radio 
 
     generarTipoRadio(9, "pregunta10", "MVIJ_10", "radioDiv2");
     pregunta10 = getAnswerRadio("MVIJ_10");
@@ -147,9 +145,7 @@ function gestionarXml(dataXml){
     console.debug("Respuesta obtenida para la pregunta7: " + pregunta7);
 
 
-    //---------------------------------------------------------------------------------------------------------
     // Métodos que generan los tipos de datos. 
-    //---------------------------------------------------------------------------------------------------------
 
     //Obtiene el título y lo carga.
     function generarTipoTexto (idTag,idHtml){
@@ -198,9 +194,7 @@ function gestionarXml(dataXml){
         ponerDatosCheckbox(tituloCheckbox, idHtml, opcionesCheckbox, divId);
     }
     
-    //---------------------------------------------------------------------------------------------------------
     // Métodos que realizan el get de las respuestas validas 
-    //---------------------------------------------------------------------------------------------------------
 
     //Hace el get de la respuesta tipo texto.
     function getAnswerText(idXml){
@@ -234,9 +228,7 @@ function gestionarXml(dataXml){
         return answer;
     }
 
-    //---------------------------------------------------------------------------------------------------------
     // Métodos que realizan el texto de los resultados correctos.
-    //---------------------------------------------------------------------------------------------------------
 
     //Hace el get de la respuesta tipo radio.
     function getAnswerDataRadio(idXml, id){
@@ -265,9 +257,7 @@ function gestionarXml(dataXml){
 
 }
 
-//-----------------------------------------------
 // Métodos que proceden a la inserción de datos.
-//-----------------------------------------------
 
 //TEXT
 function ponerDatosText(titulo, id) {
@@ -341,9 +331,7 @@ function ponerDatosCheckbox(titulo, id, options, divId){
 }
 
 
-//---------------------------------------------------------
 // Métodos de corrección.
-//---------------------------------------------------------
 
 // Método de inicialización.
 function inicializar(){
@@ -444,7 +432,9 @@ function comprobar(){
 
     return true;
 }
+
 // Método que lanza la corrección de los diferentes tipos de inputs.
+
 function correction (){
     addTitulo("Corrección Examen");
     corregirTexto("answ_text_01", respuesta1, "pregunta1");
