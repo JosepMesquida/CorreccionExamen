@@ -95,7 +95,8 @@ header{
 
 }
 
-#intrucciones a {
-	text-decoration: none;
+a{
+text-decoration:none;
+color:#ECF0F1;
 }
 
