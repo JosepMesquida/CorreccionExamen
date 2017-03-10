@@ -2,7 +2,7 @@ var formElement=null;
 
 var divResultados;
 
-var nota = 0;  //nota de la prueba sobre 10 puntos (hay 10 preguntas)
+var nota = 0;
 
 var pregunta1 = null;
 var pregunta2 = [];
@@ -26,7 +26,7 @@ var respuesta8 = null;
 var respuesta9 = null;
 var respuesta10 = null;
 
-//**************************************************************************************************** 
+
 //Después de cargar la página (onload) se definen los eventos sobre los elementos entre otras acciones.
 window.onload = function(){ 
 
@@ -59,14 +59,11 @@ window.onload = function(){
             gestionarXml(this);
         }
     };
-    xhttp.open("GET", "https://rawgit.com/JosepMesquida/CorreccionExamen/master/preguntas.XML", true); //desarrollo.
-    //xhttp.open("GET", "https://cdn.rawgit.com/am4rtinez/LMSGI-03/b1a14887/xml/questions.xml", true); //produccion.
-    //xhttp.open("GET", "xml/questions.xml", true); 
+    xhttp.open("GET", "https://rawgit.com/JosepMesquida/CorreccionExamen/master/preguntas.XML", true);
     xhttp.send();
     
 }
 
-//****************************************************************************************************
 // Recuperamos los datos del fichero XML xml/preguntas.xml
 // xmlDOC es el documento leido XML. 
 function gestionarXml(dataXml){
@@ -87,7 +84,7 @@ function gestionarXml(dataXml){
     respuesta8 = pregunta8;
     console.debug("Respuesta obtenida para la pregunta8: " + pregunta8);
 
-        //Pregunta10 - redio 
+    //Pregunta10 - radio 
 
     generarTipoRadio(9, "pregunta10", "MVIJ_10", "radioDiv2");
     pregunta10 = getAnswerRadio("MVIJ_10");
@@ -147,17 +144,14 @@ function gestionarXml(dataXml){
     console.debug("Respuesta obtenida para la pregunta7: " + pregunta7);
 
 
-    //---------------------------------------------------------------------------------------------------------
-    // Métodos que generan los tipos de datos. 
-    //---------------------------------------------------------------------------------------------------------
+    //Generan los tipos de datos
 
-    //Obtiene el título y lo carga.
+    //Carga los datos
     function generarTipoTexto (idTag,idHtml){
         var tituloText = xmlDoc.getElementsByTagName("title")[idTag].innerHTML;
         ponerDatosText(tituloText, idHtml);
     } 
 
-    //Obtiene el título y las opciones para cargarlo.
     function generarTipoRadio(idTag,idHtml, idXml, divId){
         var tituloRadio = xmlDoc.getElementsByTagName("title")[idTag].innerHTML;
         var opcionesRadio = [];
@@ -198,16 +192,13 @@ function gestionarXml(dataXml){
         ponerDatosCheckbox(tituloCheckbox, idHtml, opcionesCheckbox, divId);
     }
     
-    //---------------------------------------------------------------------------------------------------------
-    // Métodos que realizan el get de las respuestas validas 
-    //---------------------------------------------------------------------------------------------------------
+     
+    //Hace el get de la respuesta
 
-    //Hace el get de la respuesta tipo texto.
     function getAnswerText(idXml){
         return xmlDoc.getElementById(idXml).getElementsByTagName('answer')[0].innerHTML;
     }
 
-    //Hace el get de la respuesta tipo radio.
     function getAnswerRadio(idXml){
         return parseInt(xmlDoc.getElementById(idXml).getElementsByTagName('answer')[0].innerHTML);
     }
@@ -234,11 +225,10 @@ function gestionarXml(dataXml){
         return answer;
     }
 
-    //---------------------------------------------------------------------------------------------------------
-    // Métodos que realizan el texto de los resultados correctos.
-    //---------------------------------------------------------------------------------------------------------
+    //Realizan el texto de los resultados correctos
 
-    //Hace el get de la respuesta tipo radio.
+    //Hace el get de la respuesta tipo radio
+
     function getAnswerDataRadio(idXml, id){
         return xmlDoc.getElementById(idXml).getElementsByTagName('option')[id];
     }
@@ -265,16 +255,13 @@ function gestionarXml(dataXml){
 
 }
 
-//-----------------------------------------------
-// Métodos que proceden a la inserción de datos.
-//-----------------------------------------------
+//Inserción de datos
 
-//TEXT
+
 function ponerDatosText(titulo, id) {
     document.getElementById(id).innerHTML = titulo;
 }
 
-//RADIO
 function ponerDatosRadio(titulo, id, options, divId) {
     document.getElementById(id).innerHTML = titulo;
     var radioContainer = document.getElementById(divId);
@@ -308,7 +295,6 @@ function ponerDatosMultiple(titulo, id, options, numSelect) {
     }
 }
 
-//SELECT
 function ponerDatosSelect(titulo, id, options, numSelect) {
     document.getElementById(id).innerHTML = titulo;
 
@@ -341,18 +327,17 @@ function ponerDatosCheckbox(titulo, id, options, divId){
 }
 
 
-//---------------------------------------------------------
-// Métodos de corrección.
-//---------------------------------------------------------
+//Corrección
 
-// Método de inicialización.
+//Inicialización
+
 function inicializar(){
     divResultados.style.display = "block";
     document.getElementById('resultadosDiv').innerHTML = "";
     nota=0.0;
 }
 
-// Método que comprueba que el formulario ha sido rellenado.
+//Comprueba que el formulario ha sido rellenado.
 function comprobar(){
     var f=formElement;
     var checked=false;
@@ -393,6 +378,8 @@ function comprobar(){
     }
 
     //Comprobación tipo multiple.
+
+    /*
     console.log(document.getElementById("multiple1").selectedIndex);
     if (document.getElementById("multiple1").selectedIndex == -1) {
         alert("¡Responde la 2 pregunta!");
@@ -443,8 +430,12 @@ function comprobar(){
     }
 
     return true;
+    */
 }
-// Método que lanza la corrección de los diferentes tipos de inputs.
+
+
+//Corrección de diferentes tipos de inputs
+
 function correction (){
     addTitulo("Corrección Examen");
     corregirTexto("answ_text_01", respuesta1, "pregunta1");
@@ -459,7 +450,7 @@ function correction (){
     corregirCheckbox("radioDiv2", pregunta10, respuesta10, "pregunta10");
 }
 
-// Método encargado de corregir las preguntas de tipo texto.
+//Corregir las preguntas de tipo texto
 function corregirTexto(elementId, answer, question){
     var texto = document.getElementById(elementId).value;
     var puntuacion = 0;
