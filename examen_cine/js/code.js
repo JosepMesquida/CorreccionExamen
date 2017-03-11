@@ -337,11 +337,6 @@ function inicializar(){
     nota=0.0;
 }
 
-//Comprueba que el formulario ha sido rellenado.
-
-
-
-
 //Corrección de diferentes tipos de inputs
 
 function correction (){
